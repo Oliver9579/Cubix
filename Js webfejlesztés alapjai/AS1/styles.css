@@ -1,0 +1,12 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: black;
+}
+
+.not-completed {
+    color: red;
+}
