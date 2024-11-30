@@ -10,3 +10,68 @@ body {
 .not-completed {
     color: red;
 }
+
+#todos {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+input {
+    border: 2px solid darkgrey;
+    border-radius: 5px;
+}
+
+input:focus {
+    border: 2px solid grey;
+    outline: none;
+}
+
+#save-button {
+    border: 2px solid darkgrey;
+    color: white;
+    background-color: darkgrey;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#save-button:hover {
+    border: 2px solid grey;
+    color: grey;
+    background-color: lightgrey;
+    border-radius: 5px;
+}
+
+#asc, #desc {
+    border: 2px solid darkgrey;
+    font-size: 20px;
+    color: white;
+    background-color: darkgrey;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#asc:hover, #desc:hover {
+    border: 2px solid grey;
+    color: grey;
+    background-color: lightgrey;
+    border-radius: 5px;
+}
+
+.delete-todo{
+    font-size: 13px;
+    background-color: red;
+    color: white;
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.delete-todo:hover{
+    background-color: indianred;
+    color: white;
+}
+
+.invalid {
+    border: 2px solid red;
+}
