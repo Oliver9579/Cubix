@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <script src="index.js" type="module"></script>
+    <link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="App">
+
+    <div id="create-new-post">
+
+        <h1>Posts</h1>
+
+        <label for="new-post-title">Post title</label><br>
+        <input id="new-post-title" placeholder="Title" type="text"><br>
+
+        <label for="new-post-body">Post body</label><br>
+        <textarea id="new-post-body" placeholder="Body"></textarea><br>
+
+        <label>
+            <input id="num-input" type="number">
+        </label>
+
+        <button id="send-button">Send</button>
+
+    </div>
+
+    <div id="new-post">
+        <p>Title: <span id="post-title"></span></p>
+        <p>Body: <span id="post-body"></span></p>
+    </div>
+
+    <div id="post-lists">
+        <h3>Post lists</h3>
+        <div id="posts"></div>
+    </div>
+</div>
+
+</body>
+</html>
