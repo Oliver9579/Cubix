@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>&lt;component> Demo</title>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../node_modules/lit/polyfill-support.js"></script>
+  <script src="../podiumComponent.js" type="module"></script>
+  <style>
+      span {
+          padding: 10px 0 10px 5px;
+      }
+
+      div[slot = "first"] {
+          color: blue;
+      }
+
+      div[slot]:not([slot = "first"]) {
+          color: turquoise;
+      }
+  </style>
+</head>
+<body>
+<podium-component>
+  <div slot="first">Verstappen</div>
+  <br>
+  <div slot="second">Hamilton</div>
+  <br>
+  <div slot="third">Bottas</div>
+</podium-component>
+
+<podium-component>
+  <div slot="first">Leclerc</div>
+  <br>
+  <div slot="second">Perez</div>
+  <br>
+  <div slot="third">Norris</div>
+</podium-component>
+
+</body>
+</html>
