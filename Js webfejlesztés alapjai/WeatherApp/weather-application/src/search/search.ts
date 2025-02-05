@@ -7,12 +7,16 @@ export class SearchForm {
   cityInput: HTMLInputElement;
   dateInput: HTMLInputElement;
   submitButton: HTMLButtonElement;
+  cardsContainer: HTMLElement;
+  errorMessage: HTMLElement;
 
   constructor(private readonly weatherService: WeatherService) {
     this.form = document.getElementById('weather-form')! as HTMLFormElement;
     this.cityInput = document.getElementById('city-input')! as HTMLInputElement;
     this.dateInput = document.getElementById('date-input')! as HTMLInputElement;
     this.submitButton = document.getElementById('submit-btn') as HTMLButtonElement;
+    this.cardsContainer = document.getElementById('weather-container')! as HTMLElement;
+    this.errorMessage = document.getElementById('error-message') as HTMLElement;
 
     this.setDateRange();
     this.submitHandler();
@@ -22,6 +26,11 @@ export class SearchForm {
     this.form.addEventListener('submit', async e => {
       e.preventDefault();
 
+      this.cardsContainer.insertAdjacentHTML('afterbegin', `
+      <div id="loader-container" class="loader-container">
+        <div class="loader"></div>
+      </div>
+      `);
       this.submitButton.disabled = true;
 
       try {
@@ -31,9 +40,11 @@ export class SearchForm {
 
         new WeatherCard(this.cityInput.value, this.dateInput.value, weatherData);
       } catch (e) {
-        console.log(e);
+        this.errorMessage.style.display = 'block';
+        setTimeout(() => this.errorMessage.style.display = 'none', 3000);
       } finally {
         this.submitButton.disabled = false;
+        this.cardsContainer.removeChild(document.getElementById('loader-container')!);
       }
 
       this.form.reset();

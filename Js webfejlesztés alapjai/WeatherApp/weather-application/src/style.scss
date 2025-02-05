@@ -1,4 +1,7 @@
 @use 'styles/theme.scss';
+@use 'styles/loading';
+@use 'sass:map';
+
 
 * {
   box-sizing: border-box;
@@ -12,6 +15,22 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+  &.dark {
+    .content {
+      .search-bar {
+        form {
+          input {
+            background-color: map.get(theme.$primary-color, 50);
+
+            &::placeholder {
+              color: theme.$primary-font-color-inverse;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .header {
@@ -20,7 +39,7 @@ body {
   justify-content: space-between;
 
   padding: 0 theme.$gap-normal;
-  background-color: theme.$primary-color-800;
+  background-color: map.get(theme.$primary-color, 800);
   box-shadow: theme.$box-shadow;
 }
 
@@ -46,7 +65,7 @@ body {
 
     background-color: color-mix(
                     in oklab,
-                    theme.$primary-color-800 80%,
+                    map.get(theme.$primary-color, 800) 80%,
                     transparent);
     box-shadow: theme.$box-shadow;
 
@@ -64,25 +83,27 @@ form {
   align-items: center;
   gap: theme.$gap-normal;
 
-  input {
-    --size: 32px;
+  #city {
+    flex: 3 1 auto;
 
-    height: var(--size);
-    line-height: var(--size);
-    border: 1px solid theme.$primary-color-800;
+    input {
+      width: 100%;
+    }
+  }
+
+  input {
+    $size: 32px;
+
+    height: $size;
+    line-height: $size;
+    border: 1px solid map.get(theme.$primary-color, 800);
     border-radius: 4px;
     padding: 0 8px;
     background-color: rgba(255, 255, 255, 0.8);
+
   }
 }
 
-#city {
-  flex: 3 1 auto;
-
-  input {
-    width: 100%;
-  }
-}
 
 .horizontal-space {
   flex: 1;
@@ -95,7 +116,7 @@ button {
   gap: 8px;
 
   background: none;
-  background-color: theme.$secondary-color-800;
+  background-color: map.get(theme.$secondary-color, 800);
   color: theme.$primary-font-color-inverse;
   border-radius: 8px;
   padding: 8px 16px;
@@ -106,7 +127,7 @@ button {
   }
 
   &:focus {
-    background-color: theme.$primary-color-800;
+    background-color: map.get(theme.$primary-color, 800);
     color: theme.$primary-font-color;
   }
 
@@ -124,10 +145,10 @@ button {
     width: 350px;
     height: 400px;
     text-align: center;
-    border: 2px solid theme.$primary-color-800;
+    border: 2px solid map.get(theme.$primary-color, 800);
     border-radius: 24px;
     padding: theme.$gap-normal;
-    background-color: theme.$secondary-color-800;
+    background-color: map.get(theme.$secondary-color, 800);
     color: theme.$primary-font-color-inverse;
     box-shadow: theme.$box-shadow;
 
@@ -138,12 +159,29 @@ button {
 }
 
 button[id^="delete-btn-"] {
-  background-color: theme.$primary-color-800 !important;
+  background-color: map.get(theme.$primary-color, 800) !important;
+
+  &:hover {
+    background-color: map.get(theme.$secondary-color, 800) !important;
+    color: map.get(theme.$primary-color, 800);
+    border: 2px solid map.get(theme.$primary-color, 800);
+  }
 }
 
-button[id^="delete-btn-"]:hover {
-  background-color: theme.$secondary-color-800 !important;
-  color: theme.$primary-color-800;
-  border: 2px solid theme.$primary-color-800;
+.loader-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+#error-message {
+  text-align: center;
+  background-color: #c62828;
+  color: theme.$primary-font-color-inverse;
+  font-size: 18px;
+  padding: theme.$gap-normal;
+  margin: theme.$gap-normal;
+  border-radius: 16px;
 }
 
