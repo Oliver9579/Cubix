@@ -1,0 +1,108 @@
+@use 'styles/theme.scss';
+//@use 'styles/loading';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: theme.$background-color;
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 theme.$gap-normal;
+  background-color: theme.$primary-color;
+  color: #808080;
+  box-shadow: theme.$box-shadow;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+  padding: theme.$gap-normal;
+
+  > .search-bar {
+    align-self: center;
+
+    display: flex;
+    align-items: center;
+
+    width: 70vw;
+    min-width: 300px;
+    max-width: 90vw;
+
+    padding: theme.$gap-normal;
+    border-radius: 32px;
+
+    box-shadow: theme.$box-shadow;
+
+    > form > .actions {
+      display: flex;
+      gap: theme.$gap-normal;
+    }
+  }
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: theme.$gap-normal;
+
+  #country {
+    flex: 3 1 auto;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  input {
+    $size: 32px;
+
+    height: $size;
+    line-height: $size;
+    border: 1px solid theme.$primary-color;
+    border-radius: 4px;
+    padding: 0 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+
+  }
+}
+
+button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: none;
+  background-color: theme.$secondary-color;
+  color: theme.$primary-font-color-inverse;
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: 0;
+
+  &:hover {
+    background-color: theme.$primary-font-color;
+  }
+
+  &:focus {
+    background-color: theme.$primary-color;
+    color: theme.$primary-font-color;
+  }
+
+}
