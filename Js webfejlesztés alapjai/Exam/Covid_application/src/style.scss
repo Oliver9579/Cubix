@@ -104,5 +104,16 @@ button {
     background-color: theme.$primary-color;
     color: theme.$primary-font-color;
   }
+}
+
+.countries-chart {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 50px;
+
+  canvas {
+    width: 80vh !important;
+    height: 40vh !important;
+  }
 
 }
