@@ -1,7 +1,8 @@
 import './style.scss';
-import { CovidChart } from './covid-data/covid-chart.ts';
+import { CovidChartsService } from './covid-data/covid-charts-service.ts';
+import { SearchForm } from './covid-data/search.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const covidCharts = new CovidChart();
-  covidCharts.renderChart();
+  const covidService = new CovidChartsService();
+  const searchForm = new SearchForm(covidService);
 });

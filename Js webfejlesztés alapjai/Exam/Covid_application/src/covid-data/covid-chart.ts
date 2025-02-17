@@ -1,62 +1,65 @@
 import Chart from 'chart.js/auto';
-import { CovidChartsService } from './covid-charts-service.ts';
+import { CovidData } from './covid-data.model.ts';
 
 export class CovidChart {
-  private covidService: CovidChartsService;
+  private vaccinatedChartInstance: Chart | null = null;
+  private deathChartInstance: Chart | null = null;
 
-  constructor() {
-    this.covidService = new CovidChartsService();
-  }
+  constructor() {}
 
-  public async renderChart() {
+  public renderChart(covidData: CovidData) {
     try {
-      const covidData = await this.covidService.getChartsData();
-      const vaccinatedChart = document.getElementById(
+      const vaccinatedCanvas = document.getElementById(
         'vaccinated-chart',
       ) as HTMLCanvasElement;
-      const deathChart = document.getElementById(
+      const deathCanvas = document.getElementById(
         'death-chart',
       ) as HTMLCanvasElement;
 
-      new Chart(vaccinatedChart, {
+      if (this.vaccinatedChartInstance) {
+        this.vaccinatedChartInstance.destroy();
+      }
+      if (this.deathChartInstance) {
+        this.deathChartInstance.destroy();
+      }
+
+      this.vaccinatedChartInstance = new Chart(vaccinatedCanvas, {
         type: 'bar',
         data: {
-          labels: covidData.map((data) => data.country),
+          labels: [covidData.country],
           datasets: [
             {
               label: 'Population',
-              data: covidData.map((data) => data.population),
+              data: [covidData.population],
               backgroundColor: 'rgba(105,105,105, 0.5)',
             },
             {
               label: 'Confirmed Cases',
-              data: covidData.map((data) => data.confirmed),
+              data: [covidData.confirmed],
               backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
             {
               label: 'Vaccinated',
-              data: covidData.map((data) => data.vaccinated),
+              data: [covidData.vaccinated],
               backgroundColor: 'rgba(75, 192, 192, 0.5)',
             },
           ],
         },
       });
 
-      new Chart(deathChart, {
+      this.deathChartInstance = new Chart(deathCanvas, {
         type: 'bar',
         data: {
-          labels: covidData.map((data) => data.country),
+          labels: [covidData.country],
           datasets: [
             {
               label: 'Deaths',
-              data: covidData.map((data) => data.deaths),
+              data: [covidData.deaths],
               backgroundColor: 'rgba(54, 162, 235, 0.5)',
             },
             {
               label: 'Deaths per Million',
-              data: covidData.map(
-                (data) => (data.deaths / data.population) * 1000000,
-              ),
+              data: [(covidData.deaths / covidData.population) * 1000000],
               backgroundColor: 'rgba(255, 206, 86, 0.5)',
             },
           ],

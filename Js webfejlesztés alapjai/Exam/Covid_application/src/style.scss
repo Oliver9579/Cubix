@@ -1,5 +1,5 @@
 @use 'styles/theme.scss';
-//@use 'styles/loading';
+@use 'styles/loading';
 
 * {
   box-sizing: border-box;
@@ -115,5 +115,22 @@ button {
     width: 80vh !important;
     height: 40vh !important;
   }
+}
 
+.loader-container {
+  padding-top: 30px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+#error-message {
+  text-align: center;
+  background-color: #c62828;
+  color: theme.$primary-font-color-inverse;
+  font-size: 18px;
+  padding: theme.$gap-normal;
+  margin: theme.$gap-normal;
+  border-radius: 16px;
 }
