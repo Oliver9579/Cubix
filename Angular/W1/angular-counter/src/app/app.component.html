@@ -1,4 +1,14 @@
 <h1>{{ title }}</h1>
 <img [src]="logoSrc" alt="" height="300">
-<app-counter [aim]="aim"  [counter]="counter" (countChange)="countChanged($event)"/>
+
+<div>
+  <label>How many counter do you need?</label><br>
+  <input type="number" [(ngModel)]="counterCount" (ngModelChange)="counterCountChanged()">
+  {{counterCount}}
+</div>
+
+<app-counter *ngFor="let counter of counters" [aim]="counter.aim" [counter]="counter"/>
+
+<!--<app-counter [aim]="aim" [counter]="counter" (countChange)="countChanged($event)"/>-->
+<!--<app-counter [aim]="3" [counter]="{name: 'fűnyírás', id: 3}"/>-->
 
