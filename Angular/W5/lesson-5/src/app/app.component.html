@@ -1,5 +1,4 @@
 <div>
-  <p>
-    {{text}}
-  </p>
+
+  <p *ngFor="let fruit of fruits" [appFruit]="fruit">{{ fruit | displayFruit:hatedFruits.includes(fruit.name) }}</p>
 </div>
