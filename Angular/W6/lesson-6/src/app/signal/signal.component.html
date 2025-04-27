@@ -1,0 +1,7 @@
+<input type="text" [ngModel]="title()"
+       (ngModelChange)="title.set($event)">
+
+<p>{{ title() }}</p>
+<p>{{ computedTitle() }}</p>
+
+<button (click)="buttonClick()">Click</button>
